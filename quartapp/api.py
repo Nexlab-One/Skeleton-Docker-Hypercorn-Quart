@@ -2,7 +2,6 @@
 import asyncio
 from quart import Quart, request, jsonify
 from quart_schema import QuartSchema, validate_request, validate_response
-from werkzeug.routing.rules import _part_re as ROUTE_VAR_RE
 
 app = Quart(__name__)
 QuartSchema(app)
