@@ -10,7 +10,7 @@ COPY quartapp/requirements.txt ./
 RUN apk add --update openssl && \
     rm -rf /var/cache/apk/*
 # Create a virtual environment and install the dependecies
-RUN openssl req -new -newkey rsa:2048 -days 365 -nodes -x509 -keyout key.pem -out cert.pem -subj "/C=US/ST=VA/L=DC/O=OrgName/OU=IT Department/CN=example.com"
+RUN openssl req -new -newkey rsa:2048 -days 365 -nodes -x509 -keyout key.pem -out cert.pem -subj "/C=US/ST=VA/L=DC/O=OrgName/OU=IT Department/CN=example.local"
 RUN pip install --no-cache-dir -r requirements.txt --upgrade && \
   chown -R quart:quart ./
 

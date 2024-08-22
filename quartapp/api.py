@@ -8,7 +8,7 @@ app = Quart(__name__)
 QuartSchema(app)
 
 @app.route('/')
-async def get(self):
+async def home():
     '''Note Route
 
     This docstring will show up as the description and short-description
