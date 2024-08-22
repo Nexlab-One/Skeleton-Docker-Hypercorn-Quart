@@ -1,4 +1,3 @@
-version: "3"
 services:
   quart-app:
     restart: always

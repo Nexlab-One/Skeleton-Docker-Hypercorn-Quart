@@ -1,4 +1,5 @@
 h2>=4.1.0
+asyncio>=3.4.3
 quart>=0.19.6
 hypercorn>=0.17.3
-quart-openapi>=1.7.2
+quart-schema>=0.20.0

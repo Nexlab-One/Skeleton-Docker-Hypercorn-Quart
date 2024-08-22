@@ -1,41 +1,20 @@
-from quart_openapi import Pint, Resource
-from quart import jsonify, request
 
-app = Pint(__name__, title='Spectacular Hypercorn Quart Application Skeleton')
+import asyncio
+from quart import Quart, request, jsonify
+from quart_schema import QuartSchema, validate_request, validate_response
+from werkzeug.routing.rules import _part_re as ROUTE_VAR_RE
 
-expected = app.create_validator('sample_request', {
-  'type': 'object',
-  'properties': {
-    'foobar': {
-      'type': 'string'
-    },
-    'baz': {
-      'oneOf': [
-        { 'type': 'integer' },
-        { 'type': 'number', 'format': 'float' }
-      ]
-    }
-  }
-})
+app = Quart(__name__)
+QuartSchema(app)
 
 @app.route('/')
-class Root(Resource):
-  async def get(self):
+async def get(self):
     '''Note Route
 
     This docstring will show up as the description and short-description
     for the openapi docs for this route.
     '''
     return jsonify({"Note": "There exists a localhost:9000/openapi.json that can be helpful here"})
-  @app.expect(expected)
-  async def post(self): 
-    '''Post Hello Route
-
-    Data should be sent through postman (but postman does not have HTTP/2, for that you need `curl --http2`) with HTTPS POST "1": { "foobar": "super", "baz": 5.56 }
-    '''
-    data = await request.get_json()
-    return jsonify(data)
-
 
 if __name__ == "__main__":
     app.run(host='localhost', 
