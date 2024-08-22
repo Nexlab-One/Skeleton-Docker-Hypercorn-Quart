@@ -1,4 +1,4 @@
-FROM python:3.7-alpine
+FROM ubuntu/python:3.12-24.04_stable
 
 # Create a user
 RUN adduser -D quart
